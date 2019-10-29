@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Module Index &mdash; Read the Docs Sphinx Theme 0.4.3 documentation</title>
+  <title>Requirement &mdash; Read the Docs Sphinx Theme 0.4.3 documentation</title>
   
 
   
@@ -35,10 +35,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
- 
-
-
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,7 +88,6 @@
             
               <p class="caption"><span class="caption-text">Theme Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="requirement.html">Requirement</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installing.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuring.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
@@ -143,10 +139,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Python Module Index</li>
+      <li>Requirement</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/requirement.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -158,29 +158,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-t"><strong>t</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-t"><td></td><td>
-       <strong>t</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <code class="xref">test_py_module</code></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="demo/api.html#module-test_py_module.test"><code class="xref">test_py_module.test</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="requirement">
+<h1>Requirement<a class="headerlink" href="#requirement" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="required-hardware">
+<h2>Required Hardware<a class="headerlink" href="#required-hardware" title="Permalink to this headline">¶</a></h2>
+<p>One ACI fabric with at least:
+•       1 APIC
+•       1 Spine (any model)
+•       2 Leaves -EX or newer the Plugin will not work with first Generation leaves
+•       1 ESXi Server with vCenter</p>
+</div>
+<div class="section" id="software-version">
+<h2>Software Version<a class="headerlink" href="#software-version" title="Permalink to this headline">¶</a></h2>
+<p>Please refer to <a class="reference external" href="https://www.cisco.com/c/dam/en/us/td/docs/Website/datacenter/aci/virtualization/matrix/virtmatrix.html">https://www.cisco.com/c/dam/en/us/td/docs/Website/datacenter/aci/virtualization/matrix/virtmatrix.html</a> for the latest information.</p>
+<p>As for this lab I assume
+•       ACI 3.2.x
+•       ACI CNI 4.1
+•       Ubuntu 16
+•       Kubernetes 1.13</p>
+</div>
+<div class="section" id="connectivity-and-aci-pre-requisites">
+<h2>Connectivity and ACI pre-requisites:<a class="headerlink" href="#connectivity-and-aci-pre-requisites" title="Permalink to this headline">¶</a></h2>
+<p>VMware VMM integration:
+•       ACI must be integrated with vCenter with dVS
+•       Each ESXi host MUST be connected to the fabric via Virtual Port-Channel</p>
+<p>Warning: Standalone ESXi hosts with Standard vSwitch are not officially supported. They can be made to work but it requires manual configuration for the port-group with specific requirements. From experience things will break and you will lose hours on this. So please just use VMM integration with vCenter.</p>
+<p>If you want to deviate from the above assumption you can use Bare Metal hosts please refer to this link for the connectivity requirements:
+<a class="reference external" href="https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/kb/b_Cisco_ACI_and_OpFlex_Connectivity_for_Orchestrators.html">https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/kb/b_Cisco_ACI_and_OpFlex_Connectivity_for_Orchestrators.html</a></p>
+<p>Warning: Deviating from the connectivity requirements will result in a broken/non-      working cluster.</p>
+</div>
+<div class="section" id="aci-l3-out-and-vrf">
+<h2>ACI L3 OUT and VRF<a class="headerlink" href="#aci-l3-out-and-vrf" title="Permalink to this headline">¶</a></h2>
+<p>For the purposes of this lab we will deploy everything in a dedicated tenant.
+The VRF, BD, Service Graphs and L3OUT will be all within our tenant.</p>
+<p>Note: It is possible to place the network component in the common tenant and share a L3OUT in common but is a more advance config and is not covered in this guide</p>
+</div>
+<div class="section" id="ubuntu-virtual-machines">
+<h2>Ubuntu Virtual Machines<a class="headerlink" href="#ubuntu-virtual-machines" title="Permalink to this headline">¶</a></h2>
+<p>Install at latest two Ubuntu 16.x VMs and configure them with a single network interface. This interface will point to the ACI fabric as default gateway.</p>
+<p>This will require the ACI fabric tenant to be pre-provisioned with the required VRFs/EPGs/L3OUTs.</p>
+<p>Warning: It is possible to have a NIC for management. If you choose to do so however the default gateway MUST be ACI. Deviating from this requirement will most likely result in a broken cluster.</p>
+</div>
+</div>
 
 
            </div>

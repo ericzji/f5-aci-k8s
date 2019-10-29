@@ -1,9 +1,10 @@
 .. include:: ../README.rst
 
 .. toctree::
-   :caption: Theme Documentation
+   :caption: Cisco ACI Integration with F5 CIS
    :maxdepth: 2
 
+   requirement
    installing
    configuring
    contributing
@@ -13,20 +14,3 @@
    :hidden:
 
    changelog
-
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-    :caption: Demo Documentation
-
-    demo/structure
-    demo/demo
-    demo/lists_tables
-    demo/api
-
-.. toctree::
-    :maxdepth: 3
-    :numbered:
-    :caption: This is an incredibly long caption for a long menu
-
-    demo/long
