@@ -16,7 +16,7 @@ project = u'Cisco ACI Integration with F5 CIS'
 slug = re.sub(r'\W+', '-', project.lower())
 version = __version__
 release = __version__
-author = u'Dave Snider, Read the Docs, Inc. & contributors'
+author = u'Eric Ji, F5 Networks'
 copyright = author
 language = 'en'
 
