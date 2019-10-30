@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Requirement &mdash; Read the Docs Sphinx Theme 0.4.3 documentation</title>
+  <title>Requirements &mdash; Cisco ACI Integration with F5 CIS 0.4.3 documentation</title>
   
 
   
@@ -25,7 +25,6 @@
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -35,7 +34,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installing.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -49,12 +50,9 @@
           
 
           
-            <a href="index.html">
+            <a href="index.html" class="icon icon-home"> Cisco ACI Integration with F5 CIS
           
 
-          
-            
-            <img src="_static/logo-wordmark-light.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -86,7 +84,18 @@
               
             
             
-              <p class="caption"><span class="caption-text">Theme Documentation</span></p>
+              <p class="caption"><span class="caption-text">Requirements</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#required-hardware">Required Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-version">Software Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connectivity-and-aci-pre-requisites">Connectivity and ACI pre-requisites:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aci-l3-out-and-vrf">ACI L3 OUT and VRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-virtual-machines">Ubuntu Virtual Machines</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workflow for Kubernetes Integration</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installing.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuring.html">Configuration</a></li>
@@ -108,7 +117,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Read the Docs Sphinx Theme</a>
+          <a href="index.html">Cisco ACI Integration with F5 CIS</a>
         
       </nav>
 
@@ -139,7 +148,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Requirement</li>
+      <li>Requirements</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -158,46 +167,64 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="requirement">
-<h1>Requirement<a class="headerlink" href="#requirement" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="required-hardware">
 <h2>Required Hardware<a class="headerlink" href="#required-hardware" title="Permalink to this headline">¶</a></h2>
-<p>One ACI fabric with at least:
-•       1 APIC
-•       1 Spine (any model)
-•       2 Leaves -EX or newer the Plugin will not work with first Generation leaves
-•       1 ESXi Server with vCenter</p>
+<p>One ACI fabric with at least:</p>
+<ol class="arabic simple">
+<li><p>APIC</p></li>
+<li><p>Spine (any model)</p></li>
+<li><p>Leaves -EX or newer the Plugin will not work with first Generation leaves</p></li>
+<li><p>ESXi Server with vCenter</p></li>
+</ol>
 </div>
 <div class="section" id="software-version">
 <h2>Software Version<a class="headerlink" href="#software-version" title="Permalink to this headline">¶</a></h2>
 <p>Please refer to <a class="reference external" href="https://www.cisco.com/c/dam/en/us/td/docs/Website/datacenter/aci/virtualization/matrix/virtmatrix.html">https://www.cisco.com/c/dam/en/us/td/docs/Website/datacenter/aci/virtualization/matrix/virtmatrix.html</a> for the latest information.</p>
-<p>As for this lab I assume
-•       ACI 3.2.x
-•       ACI CNI 4.1
-•       Ubuntu 16
-•       Kubernetes 1.13</p>
+<p>As for this lab I assume</p>
+<ol class="arabic simple">
+<li><p>ACI 3.2.x</p></li>
+<li><p>ACI CNI 4.1</p></li>
+<li><p>Ubuntu 16</p></li>
+<li><p>Kubernetes 1.13</p></li>
+</ol>
 </div>
 <div class="section" id="connectivity-and-aci-pre-requisites">
 <h2>Connectivity and ACI pre-requisites:<a class="headerlink" href="#connectivity-and-aci-pre-requisites" title="Permalink to this headline">¶</a></h2>
-<p>VMware VMM integration:
-•       ACI must be integrated with vCenter with dVS
-•       Each ESXi host MUST be connected to the fabric via Virtual Port-Channel</p>
-<p>Warning: Standalone ESXi hosts with Standard vSwitch are not officially supported. They can be made to work but it requires manual configuration for the port-group with specific requirements. From experience things will break and you will lose hours on this. So please just use VMM integration with vCenter.</p>
+<p>VMware VMM integration:</p>
+<ol class="arabic simple">
+<li><p>ACI must be integrated with vCenter with dVS</p></li>
+<li><p>Each ESXi host MUST be connected to the fabric via Virtual Port-Channel</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Standalone ESXi hosts with Standard vSwitch are not officially supported. They can be made to work but it requires manual configuration for the port-group with specific requirements. From experience things will break and you will lose hours on this. So please just use VMM integration with vCenter.</p>
+</div>
 <p>If you want to deviate from the above assumption you can use Bare Metal hosts please refer to this link for the connectivity requirements:
 <a class="reference external" href="https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/kb/b_Cisco_ACI_and_OpFlex_Connectivity_for_Orchestrators.html">https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/kb/b_Cisco_ACI_and_OpFlex_Connectivity_for_Orchestrators.html</a></p>
-<p>Warning: Deviating from the connectivity requirements will result in a broken/non-      working cluster.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deviating from the connectivity requirements will result in a broken/non-      working cluster.</p>
+</div>
 </div>
 <div class="section" id="aci-l3-out-and-vrf">
 <h2>ACI L3 OUT and VRF<a class="headerlink" href="#aci-l3-out-and-vrf" title="Permalink to this headline">¶</a></h2>
 <p>For the purposes of this lab we will deploy everything in a dedicated tenant.
 The VRF, BD, Service Graphs and L3OUT will be all within our tenant.</p>
-<p>Note: It is possible to place the network component in the common tenant and share a L3OUT in common but is a more advance config and is not covered in this guide</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible to place the network component in the common tenant and share a L3OUT in common but is a more advance config and is not covered in this guide</p>
+</div>
 </div>
 <div class="section" id="ubuntu-virtual-machines">
 <h2>Ubuntu Virtual Machines<a class="headerlink" href="#ubuntu-virtual-machines" title="Permalink to this headline">¶</a></h2>
 <p>Install at latest two Ubuntu 16.x VMs and configure them with a single network interface. This interface will point to the ACI fabric as default gateway.</p>
 <p>This will require the ACI fabric tenant to be pre-provisioned with the required VRFs/EPGs/L3OUTs.</p>
-<p>Warning: It is possible to have a NIC for management. If you choose to do so however the default gateway MUST be ACI. Deviating from this requirement will most likely result in a broken cluster.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is possible to have a NIC for management. If you choose to do so however the default gateway MUST be ACI. Deviating from this requirement will most likely result in a broken cluster.</p>
+</div>
 </div>
 </div>
 
@@ -206,6 +233,15 @@ The VRF, BD, Service Graphs and L3OUT will be all within our tenant.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installing.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

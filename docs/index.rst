@@ -1,10 +1,15 @@
 .. include:: ../README.rst
 
 .. toctree::
-   :caption: Cisco ACI Integration with F5 CIS
-   :maxdepth: 2
+   :caption: Requirements
+   :maxdepth: 1
 
    requirement
+
+.. toctree::
+   :caption: Workflow for Kubernetes Integration
+   :maxdepth: 2
+
    installing
    configuring
    contributing
