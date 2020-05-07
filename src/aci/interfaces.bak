@@ -1,0 +1,28 @@
+auto ens160
+iface ens160 inet static
+address 10.192.74.161
+netmask 255.255.255.0
+gateway 10.192.74.1
+#dns-nameservers 10.192.50.10
+
+# Interface connected to ACI
+auto ens192
+iface ens192 inet manual
+    mtu 9000
+
+# ACI Infra VLAN
+auto ens192.4093
+iface ens192.4093 inet dhcp
+    mtu 9000
+    up route add -net 224.0.0.0/4 dev ens192.4093
+    vlan-raw-device ens192
+
+# Node Vlan
+auto ens192.4011
+iface ens192.4011 inet static
+    address 10.32.0.11
+    netmask 255.255.0.0
+    mtu 9000
+    vlan-raw-device ens192
+    up route add default gw 10.32.0.1
+    dns-nameservers 192.168.65.1

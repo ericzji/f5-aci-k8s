@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: demo-app
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+      - name: f5-demo-app
+        image: chen23/f5-demo-app:openshift
+        ports:
+         - containerPort: 8080
+           protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app
+  labels:
+    name: demo-app
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: demo-app

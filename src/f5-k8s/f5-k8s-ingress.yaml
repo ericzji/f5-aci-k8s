@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+ name: ing-virtual-hosting
+ namespace: default
+ annotations:
+  # See the k8s-bigip-ctlr documentation for information about
+  # all Ingress Annotations
+  # https://clouddocs.f5.com/products/connectors/k8s-bigip-ctlr/latest/#supported-ingress-annotations
+  virtual-server.f5.com/ip: "10.194.101.102"
+  virtual-server.f5.com/partition: "k8s"
+  virtual-server.f5.com/balance: "least-connections-node"
+  virtual-server.f5.com/http-port: "80"
+spec:
+ rules:
+ # Omit the host name (URL) to match all hosts
+ - http:
+     # Provide the path to each Service you want to proxy
+     paths:
+     - path: /
+       backend:
+         serviceName: demo-app
+         servicePort: 80
